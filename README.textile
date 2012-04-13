@@ -1,0 +1,63 @@
+h1. How to install JobScheduler with MySQL and Web User Interface on Linux
+
+Reference: www.sos-berlin.com/scheduler
+
+h3. Necessary Pre-installed Packages:
+
+Apache  - http://httpd.apache.org/download.cgi             (Necessary to use the Web User Interface)
+PHP  - http://php.net/downloads.php                         (Necessary to use the Web User Interface)
+MySQL Server/Client - http://dev.mysql.com/downloads/ 
+Java (JRE) - http://www.oracle.com/technetwork/java/javase/downloads/index.html
+MySQL Connector Java - http://dev.mysql.com/downloads/connector/j/
+
+
+h3. Download JobSchedluer:
+
+JobScheduler - http://www.sos-berlin.com/modules/cjaycontent/index.php?id=126&page=osource_scheduler_download_en.htm
+
+
+h3. Unpacking:
+
+<pre>
+<code>
+$ tar -xzvf scheduler_linux.1.3.12.1329.tar.gz
+</code>
+</pre>
+
+
+h3. Configuring:
+
+<pre>
+<code>
+# Entering in the nginx directory
+$ cd jobscheduler.1.3.12.1329
+
+# Edit the file "scheduler_install.xml" to your needs. Pay attetion to these options:
+#<pack index="0" name="Job Scheduler" selected="true"/>
+#<pack index="2" name="Database Support" selected="true"/>
+#<pack index="3" name="Web" selected="true"/>
+#<pack index="4" name="Managed Jobs" selected="true"/>
+#<pack index="5" name="Housekeeping Jobs" selected="true"/>
+#<pack index="6" name="MySQL" selected="true"/>
+#<pack index="7" name="Cron" selected="false"/>
+$ vi scheduler_install.xml
+
+
+#Install the Scheduler
+$ sudo java -jar scheduler_linux32.jar scheduler_install.xml
+
+
+#If you have problem with a creation of any table, you can run the script below to fix it
+$ /[YOUR_INSTALL_PATH]/scheduler/install/scheduler_install_tables.sh
+
+
+#Starting 
+$ /[YOUR_INSTALL_PATH]/scheduler/bin/jobscheduler.sh start
+</code>
+</pre>
+
+
+h2. Author:
+
+Rafael Inocencio <rafael_rci@yahoo.com.br>
+https://github.com/rcicm
